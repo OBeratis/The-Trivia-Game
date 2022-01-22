@@ -16,7 +16,7 @@ const onKeyUp = (event) => {
 
 <template>
     <nav class="sticky top-0 bg-yellow-500 p-4 mb-4 flex justify-between items-center">
-        <router-link to="/" class="text-xl font-bold">Start</router-link>
+        <router-link to="/" class="rounded border border-black text-xl font-bold">Start</router-link>
         <div>
             <input v-if="showSearch" class="rounded px-4 py-1 mr-4" type="text" placeholder="Search a category..." @keyup="onKeyUp"/>
             <router-link v-if="showQuestion" to="/Question" class="rounded border border-black text-xl font-bold">Question</router-link>

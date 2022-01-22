@@ -18,6 +18,7 @@ export default createStore({
         username: '',
         questions: [],
         searchCategory: "",
+        userQuestions: [],
         error: ''
     },
     mutations: {
@@ -32,6 +33,9 @@ export default createStore({
         },
         setSearchCategory: (state, text) => {
             state.searchCategory = text
+        },
+        setUserQuestions: (state, payload) => {
+            state.userQuestions = payload
         }
     },
     getters: {
@@ -77,9 +81,12 @@ export default createStore({
             }
 
             commit('setQuestions', questions)
-
             
             return null
+        },
+        async fetchUserQuestions({ commit, state }) {
+            
         }
+
     }
 })
