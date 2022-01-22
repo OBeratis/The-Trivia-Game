@@ -17,6 +17,7 @@ export default createStore({
         user: initUser(),
         username: '',
         questions: [],
+        searchCategory: "",
         error: ''
     },
     mutations: {
@@ -28,10 +29,17 @@ export default createStore({
         },
         setError: (state, payload) => {
             state.error = payload
+        },
+        setSearchCategory: (state, text) => {
+            state.searchCategory = text
         }
     },
     getters: {
-
+        filterQuestionsByCategory: (state) => {
+            return state.questions.filter((question) => {
+                return question.category.toLowerCase().includes(state.searchCategory.toLowerCase())
+            })
+        }
     },
     actions: {
         async getUser({commit}) {

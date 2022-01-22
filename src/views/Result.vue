@@ -2,6 +2,7 @@
 import { onMounted } from "vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import Navbar from "../components/Navbar.vue";
 
 const router = useRouter()
 
@@ -20,7 +21,7 @@ const onShowQuestion = () => {
 </script>
 
 <template>
-    <h1>Result</h1>
-    <button class="border bg-blue-500 text-white px-3 rounded" @click="onShowStart">Start</button>  
-    <button class="border bg-blue-500 text-white px-3 rounded" @click="onShowQuestion">Replay Question</button>  
+    <Navbar :showSearch="false" :showResult="false" :showQuestion="true"/>
+    <!-- <button class="border bg-blue-500 text-white px-3 rounded" @click="onShowStart">Start</button>   -->
+    <!-- <button class="border bg-blue-500 text-white px-3 rounded" @click="onShowQuestion">Replay Question</button>   -->
 </template>

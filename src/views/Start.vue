@@ -41,7 +41,6 @@ const onStartPlaying = () => {
 <template>
   <main class="container mx-auto px-4">
     <h1 class="mb-4 text-2xl">Start</h1>
-    <!--<form @submit.prevent="onStartPlaying">-->
     <form>
       <div class="p-3">
         <label for="username" class="block">Username</label>
@@ -52,7 +51,7 @@ const onStartPlaying = () => {
           class="border border-slate-400"
           v-model.trim="username"
         />
-        <button class="border bg-blue-500 text-white px3 rounded">Get User</button>
+        <button class="border bg-blue-500 text-white px3 rounded" @click="onSubmit">Get User</button>
       </div>
       <div class="p-3">
         <label class="block">Select Difficulty:</label>
