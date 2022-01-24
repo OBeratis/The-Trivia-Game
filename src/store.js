@@ -43,6 +43,7 @@ export default createStore({
         userQuestionAnswer: "",
         isAnswered: false,
         userQuestionAnswers: [],
+        score: ref(0),
         error: ''
     },
     mutations: {
@@ -64,7 +65,12 @@ export default createStore({
 
             let userCollectionsQuestion = state.questionCollection.find(x => x.question === state.userQuestion)
             if (userCollectionsQuestion !== null) {
-                userCollectionsQuestion.user_answer = payload   
+                userCollectionsQuestion.user_answer = payload
+
+                if (userCollectionsQuestion.correct_answer === payload)
+                {
+                    state.score += 10;
+                }
             }
         },
         setUsername: (state, payload) => {

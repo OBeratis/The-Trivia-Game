@@ -37,7 +37,6 @@ const onAnswerEvent = (todo) => {
 
      store.commit("setUserAnwerToQuestion", props.questionItem.question);
      store.commit("setUserAnwerToValue", todo);
-     store.commit("setUserAnswerBoth", props.questionItem.question, todo);
 }
 </script>
 
