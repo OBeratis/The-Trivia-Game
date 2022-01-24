@@ -9,10 +9,12 @@ import { computed } from "vue";
 const router = useRouter()
 const store = useStore()
 
-const questionsList = computed(() => store.getters.filterQuestionsByCategory)
+const questionsList = computed(() => store.getters.filterQuestionsCollections)
 
 onMounted(async() => {
   console.log("Result...")
+
+  console.log(store.state.userQuestionAnswer)
 })
 
 const onShowStart = () => {
@@ -30,7 +32,17 @@ const onShowQuestion = () => {
 
     <ul class="grid-responsive gap-4">
       <li v-for="item in questionsList" :key="item" :questionItem="item">
-        {{ item.question}}
+        <div class="p-3">
+          <header class="flex items-center">
+            <span class="block text-lg">{{ item.question }}</span>   
+          </header>
+          <span class="block text-2lg">{{ item.user_answer }}</span>
+          <footer class="flex justify-start p-2">
+                <span class="border border-blue-400 px-3 rounded text-blue-400">
+                  {{ item.correct_answer }}
+                </span>
+          </footer>
+        </div>
       </li>
     </ul>    
 </template>

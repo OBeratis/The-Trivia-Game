@@ -7,6 +7,13 @@ import QuestionListItem from "./QuestionListItem.vue";
 
 const store = useStore()
 
+const props = defineProps({
+        questionItem: {
+            type: Object,
+            required: true
+        }
+    })
+    
 // const questions = computed(() => store.state.questions)
 const questions = computed(() => store.getters.filterQuestionsByCategory)
 

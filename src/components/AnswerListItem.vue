@@ -15,7 +15,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <QuestionAnswerButton :answerItem="answerItem"/>
+    <QuestionAnswerButton :answerItem="props.answerItem"/>
 </template>
 
 <style scoped>

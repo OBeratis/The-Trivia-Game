@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useRouter } from "vue-router"
 import { apiGetUser } from '../api/users'
 import { onMounted } from "vue";
@@ -7,6 +7,8 @@ import { useStore } from "vuex";
 
 const router = useRouter()
 const store = useStore()
+
+const questioncollection = computed(() => store.state.questionCollection)
 
 const username = ref("");
 const displayError = ref("Display Message");

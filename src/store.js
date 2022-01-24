@@ -6,16 +6,30 @@ import { ref } from 'vue'
 const initUser = () => {
     const storedUser = localStorage.getItem("trivia-user")
     if (!storedUser) {
-        return null
+        const data = JSON.stringify({
+            user: {
+                "id": 1,
+                "username": "Trivia",
+                "highScore": 0            }
+        })
+
+        localStorage.setItem("trivia-user", data)
     }
 
     return JSON.parse(storedUser)
 }
 
+function QuestionCollection(question, userAnswer, correctAnswer, offerquestions) {
+    this.correct_answer = correctAnswer;
+    this.user_answer = userAnswer;
+    this.question = question;
+    this.offered_questions = offerquestions 
+};
 
 export default createStore({
     state: {
         user: initUser(),
+        questionCollection: [],
         username: '',
         category: '',
         difficult: '',
@@ -33,6 +47,11 @@ export default createStore({
     mutations: {
         setURL: (state, payload) => {
             state.URL = payload
+        },
+        setToQuestionCollection: (state, payload) => {
+            console.log(`Collection ${payload}`)
+
+            state.questionCollection.push(payload)
         },
         setUsername: (state, payload) => {
             state.username = payload
@@ -76,6 +95,11 @@ export default createStore({
                 return question.category.toLowerCase().includes(state.searchCategory.toLowerCase())
             })
         },
+        filterQuestionsCollections: (state) => {
+            return state.questions.filter((question) => {
+                return question.question.toLowerCase().includes("")
+            })
+        },
         findByQuestion: (state) => (question) => {
             return state.questions.find(x => x.question === question)
         },
@@ -84,6 +108,9 @@ export default createStore({
         },
         getIsAnswered: (state) => () => {
             return state.isAnswered;
+        },
+        findCollectionByQuestion: (state) => (question) => {
+            return state.questionCollection.find(x => x.question === question)
         }
     },
     actions: {
@@ -139,6 +166,11 @@ export default createStore({
 
             commit('setUserQuestionAnswer', answer)
             commit('addUserQuestionAnswer', answer)
+
+            // const question = getters.findCollectionByQuestion(answer)
+            // if (question !== null) {
+            //     commit('setToQuestionCollection', answer) 
+            // }
         }
 
     }

@@ -10,6 +10,23 @@ const OPEN_DB_URL = "https://opentdb.com/api.php"
 const router = useRouter()
 const store = useStore()
 
+/*
+function QuestionCollection(question, userAnswer, correctAnswer, offerquestions) {
+    this.correct_answer = correctAnswer;
+    this.user_answer = userAnswer;
+    this.question = question;
+    this.offered_questions = offerquestions 
+};
+*/
+
+function QuestionCollection() {
+    this.correct_answer = '';
+    this.user_answer = '';
+    this.question = '';
+    this.offered_questions = [] 
+};
+
+
 let url = `${OPEN_DB_URL}`
 
 onMounted( async() => {
@@ -49,6 +66,25 @@ onMounted( async() => {
       }
 
       store.commit('setQuestions', results)
+
+      let questionCollection = new QuestionCollection();
+      let offerQuestionList = []
+
+      results.forEach(element => {
+        questionCollection = new QuestionCollection();
+        offerQuestionList = []
+        
+        element.incorrect_answers.forEach(element => {
+          offerQuestionList.push(element);        
+        });
+        offerQuestionList.push(element.correct_answer);
+        
+        questionCollection.offered_questions = offerQuestionList
+        questionCollection.question = element.question
+        questionCollection.correct_answer = element.correct_answer
+
+        store.commit('setToQuestionCollection', questionCollection)
+      });
 
       return [null, results ]
   } catch (e) {
