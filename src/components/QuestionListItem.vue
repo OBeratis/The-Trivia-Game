@@ -1,8 +1,9 @@
 <script setup>
 import { useStore } from 'vuex';
 import { reactive } from 'vue';
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import AnswerListItem from './AnswerListItem.vue';
+import { computed } from "vue";
 
 const store = useStore()
 
@@ -13,9 +14,7 @@ const props = defineProps({
         }
     })
 
-const onAnswerClickItem = () => {
-    console.log(props.questionItem);
-}
+const isAnswered = computed(() => store.getters.getIsAnswered)
 
 onMounted(async() => {
     console.log("Question list item...")
@@ -25,9 +24,14 @@ onMounted(async() => {
 
     props.questionItem = {...props.questionItem, offeredAnswer: possibleAnswer}
 
-    console.log(props.questionItem)
+    // console.log(props.questionItem)
 })
 
+const isHidden = ref(false)
+
+const onAnswerEvent = (todo) => {
+     isHidden.value = true
+}
 </script>
 
 <template>
@@ -42,11 +46,7 @@ onMounted(async() => {
                 </p>
             </header>
             <div class="grid grid-cols-1 gap-4">
-                <AnswerListItem v-for="answerItem in props.questionItem.incorrect_answers" :key="answerItem" :answerItem="answerItem"/>
-                 <!-- <button class="bg-yellow-500 p-2 rounded text-sm max-w-md" @click="onAnswerClickItem">{{questionItem.incorrect_answers[0]}}</button>
-                 <button class="bg-yellow-500 p-2 rounded text-sm max-w-md" @click="onAnswerClickItem">{{questionItem.incorrect_answers[1]}}</button>
-                 <button class="bg-yellow-500 p-2 rounded text-sm max-w-md" @click="onAnswerClickItem">{{questionItem.incorrect_answers[2]}}</button>-->
-                 <!-- <button class="bg-yellow-500 p-2 rounded text-sm max-w-md" @click="onAnswerClickItem">{{props.questionItem.correct_answer}}</button> -->
+                <AnswerListItem @AnswerEvent="onAnswerEvent" :hidden="isHidden" v-for="answerItem in props.questionItem.incorrect_answers" :key="answerItem" :answerItem="answerItem"/>
             </div>  
             <!-- <footer class="flex justify-start p-2">
                 <router-link 

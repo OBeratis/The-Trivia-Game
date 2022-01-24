@@ -9,12 +9,10 @@ import { computed } from "vue";
 const router = useRouter()
 const store = useStore()
 
-const questions = computed(() => store.getters.getAllQuestions)
+const questionsList = computed(() => store.getters.filterQuestionsByCategory)
 
 onMounted(async() => {
   console.log("Result...")
-
-  console.log(questions)
 })
 
 const onShowStart = () => {
@@ -29,6 +27,17 @@ const onShowQuestion = () => {
 
 <template>
     <Navbar :showSearch="false" :showResult="false" :showQuestion="true"/>
-    <!-- <button class="border bg-blue-500 text-white px-3 rounded" @click="onShowStart">Start</button>   -->
-    <!-- <button class="border bg-blue-500 text-white px-3 rounded" @click="onShowQuestion">Replay Question</button>   -->
+
+    <ul class="grid-responsive gap-4">
+      <li v-for="item in questionsList" :key="item" :questionItem="item">
+        {{ item.question}}
+      </li>
+    </ul>    
 </template>
+
+<style scoped>
+ .grid-responsive {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200, 1fr));
+    }
+</style>

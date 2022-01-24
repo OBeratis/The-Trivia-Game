@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import QuestionList from "../components/QuestionList.vue";
@@ -60,6 +60,7 @@ onMounted( async() => {
 const onShowResult = () => {
   router.push('/Result')
 }
+
 </script>
 
 <template>

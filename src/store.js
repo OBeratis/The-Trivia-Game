@@ -26,6 +26,7 @@ export default createStore({
         searchCategory: "",
         userQuestions: [],
         userQuestionAnswer: "",
+        isAnswered: false,
         userQuestionAnswers: [],
         error: ''
     },
@@ -62,7 +63,8 @@ export default createStore({
         },
         setUserQuestionAnswer: (state, payload) => {
             state.userQuestionAnswer = payload
-            console.log(`User question answer ${payload}`)
+            state.isAnswered = true
+            console.log(`User question answer ${payload} ${state.isAnswered}`)
         },
         addUserQuestionAnswer: (state, payload) => {
             state.userQuestionAnswers.push(payload)
@@ -79,6 +81,9 @@ export default createStore({
         },
         getAllQuestions: (state) => () => {
             return state.questions;
+        },
+        getIsAnswered: (state) => () => {
+            return state.isAnswered;
         }
     },
     actions: {

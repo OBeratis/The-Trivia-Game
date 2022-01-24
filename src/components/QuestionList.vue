@@ -13,8 +13,7 @@ const questions = computed(() => store.getters.filterQuestionsByCategory)
 </script>
 
 <template>
-    <!-- <ul class="grid-responsive gap-4"> -->
-    <ul>
+    <ul> 
         <QuestionListItem v-for="questionItem in questions" :key="questionItem" :questionItem="questionItem"/>
     </ul>    
 </template>
