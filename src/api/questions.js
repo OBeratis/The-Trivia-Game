@@ -1,9 +1,16 @@
 import { OPEN_DB_URL } from ".";
+import { useStore } from "vuex";
+import { computed } from "vue";
+
+const store = useStore()
+
+const url = computed(() => store.state.URL)
 
 export async function apiFetchAllQuestions() {
+    console.log(store.state.URL)
     try {
-        const response = await fetch(`${OPEN_DB_URL}?amount=2&category=21&difficulty=easy&type=multiple`)
-        // https://opentdb.com/api.php?amount=4&category=21&difficulty=easy&type=boolean
+        // const response = await fetch(`${OPEN_DB_URL}?amount=1&category=21&difficulty=easy&type=multiple`)
+        const response = await fetch(store.state.URL)
 
         if (!response.ok)
         {

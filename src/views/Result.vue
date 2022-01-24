@@ -3,11 +3,18 @@ import { onMounted } from "vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import Navbar from "../components/Navbar.vue";
+import { useStore } from "vuex";
+import { computed } from "vue";
 
 const router = useRouter()
+const store = useStore()
+
+const questions = computed(() => store.getters.getAllQuestions)
 
 onMounted(async() => {
   console.log("Result...")
+
+  console.log(questions)
 })
 
 const onShowStart = () => {

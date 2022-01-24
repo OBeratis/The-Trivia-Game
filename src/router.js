@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router"
 import Start from './views/Start.vue'
 import Question from './views/Question.vue'
+import QuestionDetail from './views/QuestionDetail.vue'
 import Result from './views/Result.vue'
 import Store from './store'
 
@@ -31,6 +32,10 @@ const routes = [
     {
         path: "/Question",
         component: Question
+    },
+    {
+        path: "/Question/:question",
+        component: QuestionDetail
     },
     {
         path: "/Result",

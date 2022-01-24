@@ -7,8 +7,8 @@ import QuestionListItem from "./QuestionListItem.vue";
 
 const store = useStore()
 
-const questions = computed(() => store.state.questions)
-// const questions = computed(() => store.getters.filterQuestionsByCategory)
+// const questions = computed(() => store.state.questions)
+const questions = computed(() => store.getters.filterQuestionsByCategory)
 
 </script>
 

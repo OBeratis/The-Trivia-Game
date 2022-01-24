@@ -17,15 +17,11 @@ const onAnswerClickItem = () => {
     console.log(props.questionItem);
 }
 
-// const possibleAnswerList = reactive([])
-
 onMounted(async() => {
     console.log("Question list item...")
 
     let possibleAnswer = props.questionItem.incorrect_answers
     possibleAnswer.push(props.questionItem.correct_answer)
-
-    // possibleAnswerList.push = {...props.questionItem, offeredAnswer: possibleAnswer}
 
     props.questionItem = {...props.questionItem, offeredAnswer: possibleAnswer}
 
@@ -40,7 +36,11 @@ onMounted(async() => {
             <span class="block text-lg font-bold min-w-100">{{questionItem.category}}</span>    
         </aside>
         <div class="p-4">
-            <span class="block text-lg">{{questionItem.question}}</span>
+            <header class="flex items-center justify-between">
+                <p class="flex items-center">
+                    <span class="block text-lg">{{questionItem.question}}</span>
+                </p>
+            </header>
             <div class="grid grid-cols-1 gap-4">
                 <AnswerListItem v-for="answerItem in props.questionItem.incorrect_answers" :key="answerItem" :answerItem="answerItem"/>
                  <!-- <button class="bg-yellow-500 p-2 rounded text-sm max-w-md" @click="onAnswerClickItem">{{questionItem.incorrect_answers[0]}}</button>
@@ -48,7 +48,12 @@ onMounted(async() => {
                  <button class="bg-yellow-500 p-2 rounded text-sm max-w-md" @click="onAnswerClickItem">{{questionItem.incorrect_answers[2]}}</button>-->
                  <!-- <button class="bg-yellow-500 p-2 rounded text-sm max-w-md" @click="onAnswerClickItem">{{props.questionItem.correct_answer}}</button> -->
             </div>  
-            
+            <!-- <footer class="flex justify-start p-2">
+                <router-link 
+                    :to="`/question/${questionItem.question}`"
+                    class="border border-blue-400 px-3 rounded text-blue-400">View more
+                </router-link>
+            </footer> -->
         </div>
     </li>
 </template>
