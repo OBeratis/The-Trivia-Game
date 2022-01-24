@@ -31,6 +31,13 @@ const isHidden = ref(false)
 
 const onAnswerEvent = (todo) => {
      isHidden.value = true
+
+     console.log(`Collection Answer ${props.questionItem.question}`)
+     console.log(`Collection Answer ${todo}`)
+
+     store.commit("setUserAnwerToQuestion", props.questionItem.question);
+     store.commit("setUserAnwerToValue", todo);
+     store.commit("setUserAnswerBoth", props.questionItem.question, todo);
 }
 </script>
 

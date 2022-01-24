@@ -39,6 +39,7 @@ export default createStore({
         questions: [],
         searchCategory: "",
         userQuestions: [],
+        userQuestion: '',
         userQuestionAnswer: "",
         isAnswered: false,
         userQuestionAnswers: [],
@@ -52,6 +53,19 @@ export default createStore({
             console.log(`Collection ${payload}`)
 
             state.questionCollection.push(payload)
+        },
+        setUserAnwerToQuestion: (state, question) => {
+            console.log(`Collection Answer ${question}`)
+            state.userQuestion = question
+        },
+        setUserAnwerToValue: (state, payload) => {
+            console.log(`Collection Answer ${payload}`)
+            state.userQuestionAnswer = payload
+
+            let userCollectionsQuestion = state.questionCollection.find(x => x.question === state.userQuestion)
+            if (userCollectionsQuestion !== null) {
+                userCollectionsQuestion.user_answer = payload   
+            }
         },
         setUsername: (state, payload) => {
             state.username = payload
@@ -96,7 +110,7 @@ export default createStore({
             })
         },
         filterQuestionsCollections: (state) => {
-            return state.questions.filter((question) => {
+            return state.questionCollection.filter((question) => {
                 return question.question.toLowerCase().includes("")
             })
         },

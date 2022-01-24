@@ -14,7 +14,7 @@
         console.log('QuestionAnswerButton...')
         store.dispatch("addQuestionAnswered", props.answerItem);
         isLoading.value = true
-        emit('AnswerEvent', true)
+        emit('AnswerEvent', props.answerItem)
     }    
 </script>
 
