@@ -42,7 +42,7 @@ const onShowQuestion = () => {
         </aside>
         <div class="mr-4">
           <header class="flex items-start justify-between">
-             <span class="block text-lg">10</span>
+             <span class="block text-lg">{{store.state.score}}</span>
           </header>
         </div>
     </div>
