@@ -18,16 +18,19 @@ const props = defineProps({
 
 const questionsList = computed(() => store.getters.filterQuestionsCollections)
 
+// Only for check...
 onMounted(async() => {
   console.log("Result...")
 
   console.log(store.state.userQuestionAnswer)
 })
 
+// Navigate to start screen
 const onShowStart = () => {
   router.push('/')
 }
 
+// Navigate to question screen without fetch OPEN DB again
 const onShowQuestion = () => {
   router.push('/Question')
 }

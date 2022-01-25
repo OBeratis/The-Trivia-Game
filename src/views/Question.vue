@@ -10,15 +10,9 @@ const OPEN_DB_URL = "https://opentdb.com/api.php"
 const router = useRouter()
 const store = useStore()
 
-/*
-function QuestionCollection(question, userAnswer, correctAnswer, offerquestions) {
-    this.correct_answer = correctAnswer;
-    this.user_answer = userAnswer;
-    this.question = question;
-    this.offered_questions = offerquestions 
-};
-*/
+let url = `${OPEN_DB_URL}`
 
+// Class to store user questions answer
 function QuestionCollection() {
     this.correct_answer = '';
     this.user_answer = '';
@@ -26,9 +20,7 @@ function QuestionCollection() {
     this.offered_questions = [] 
 };
 
-
-let url = `${OPEN_DB_URL}`
-
+// Fetch questions from OPEN DB
 onMounted( async() => {
  
   url += `?amount=${store.state.numberOfQuestions}`
@@ -48,7 +40,6 @@ onMounted( async() => {
     case '2': url += '&type=boolean'; break;
   }
 
-  // console.log(url)
   try {
       const response = await fetch(url)
 
@@ -104,6 +95,4 @@ const onShowResult = () => {
     <main class="container mx-auto px-4">
       <QuestionList />
     </main>
-
-    <!-- <button class="border bg-blue-500 text-white px-3 rounded" @click="onShowResult">Show Result</button>   -->
 </template>

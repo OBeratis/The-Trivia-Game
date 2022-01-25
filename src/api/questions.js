@@ -9,7 +9,6 @@ const url = computed(() => store.state.URL)
 export async function apiFetchAllQuestions() {
     console.log(store.state.URL)
     try {
-        // const response = await fetch(`${OPEN_DB_URL}?amount=1&category=21&difficulty=easy&type=multiple`)
         const response = await fetch(store.state.URL)
 
         if (!response.ok)

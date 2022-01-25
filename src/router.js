@@ -22,7 +22,7 @@ const loginGuard = (_to, _from, next) => {
     }
 }
 
-
+// Define router
 const routes = [
     {
         path: "/",

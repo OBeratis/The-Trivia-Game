@@ -161,11 +161,6 @@ export default createStore({
             }
         },
         async fetchQuestionsFromApi({ commit, state }) {
-            // if (state.questions.length !== 0)
-            // {
-            //     return Promise.resolve(null)
-            // }
-
             const [ error, questions ] = await apiFetchAllQuestions()
 
             if (error !== null)
@@ -177,20 +172,11 @@ export default createStore({
             
             return null
         },
-        async fetchUserQuestions({ commit, state }) {
-
-        },
         addQuestionAnswered({ commit, state, getters }, answer) {
-
-            // const question = getters.findByQuestion(answer)
 
             commit('setUserQuestionAnswer', answer)
             commit('addUserQuestionAnswer', answer)
 
-            // const question = getters.findCollectionByQuestion(answer)
-            // if (question !== null) {
-            //     commit('setToQuestionCollection', answer) 
-            // }
         }
 
     }

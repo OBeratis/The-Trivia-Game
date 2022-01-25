@@ -52,15 +52,8 @@ const onAnswerEvent = (todo) => {
                 </p>
             </header>
             <div class="grid grid-cols-1 gap-4">
-                <!--<AnswerListItem @AnswerEvent="onAnswerEvent" :hidden="isHidden" v-for="answerItem in props.questionItem.incorrect_answers" :key="answerItem" :answerItem="answerItem"/>-->
                 <AnswerListItem @AnswerEvent="onAnswerEvent" :hidden="isHidden" v-for="answerItem in props.questionItem.incorrect_answers" :key="answerItem" :answerItem="answerItem"/>
             </div>  
-            <!-- <footer class="flex justify-start p-2">
-                <router-link 
-                    :to="`/question/${questionItem.question}`"
-                    class="border border-blue-400 px-3 rounded text-blue-400">View more
-                </router-link>
-            </footer> -->
         </div>
     </li>
 </template>

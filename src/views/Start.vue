@@ -5,6 +5,7 @@ import { apiGetUser } from '../api/users'
 import { onMounted } from "vue";
 import { useStore } from "vuex";
 
+// Variables
 const router = useRouter()
 const store = useStore()
 
@@ -16,6 +17,7 @@ const numberOfQuestions = ref(0)
 const selectDifficults = ref("")
 const selectCategories = ref("")
 
+// Table of Categories, difficulty and Type of questions
 const difficultItems = ['Easy', 'Medium', 'Hard'];
 
 const categoryItems = ['General Knowledge', 'Mythology', 'Sports', 'Geography', 'History', 'Politics', 'Art', 'Celebrities', 'Animals'];
@@ -53,6 +55,7 @@ onMounted(async() => {
   console.log("Start...")
 })
 
+// Events
 const onKeyUpUsername = (event) => {
   store.commit("setUsername", event.target.value.trim())
 }
@@ -74,7 +77,7 @@ const onKeyUpNoQuestions = (event) => {
 
 }
 
-
+// Submit - not used
 const onSubmit = async () =>{
     const [ error, user ] = await apiGetUser(username.value)
     if (error !== null)
@@ -87,6 +90,7 @@ const onSubmit = async () =>{
     }
 }
 
+// click start playing button
 const onStartPlaying = () => {
   router.push('/Question')
 }
@@ -140,12 +144,13 @@ const onStartPlaying = () => {
       <button class="border bg-blue-500 text-white px-3 rounded" @click="onStartPlaying">Start Playing</button>  
     </form>
 
-    <div v-if="displayError" class="bg-red-500 text-white">
+    <!-- <div v-if="displayError" class="bg-red-500 text-white">
       <span class="block text-lg mb-2">Error</span>
       <p>{{ username}} - {{numberOfQuestions}} - {{selectDifficults}} - {{selectCategories}}</p>
-    </div>
+    </div> -->
   </main>
 </template>
 
 <style scoped>
+
 </style>
