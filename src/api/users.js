@@ -1,4 +1,4 @@
-import { BASE_URL } from ".";
+import { BASE_URL } from "./";
 
 export async function apiGetUser(username) {
     try {
@@ -15,4 +15,14 @@ export async function apiGetUser(username) {
     } catch (e) {
         return [e.message, null]
     }
+    /*
+    try {
+        const response = await fetch(`http://localhost:3000/trivia?username=${username}`)
+        const data = await response.json()
+
+        return [null, data]
+    } catch (e) {
+        return [e.message, null]
+    }
+    */
 }

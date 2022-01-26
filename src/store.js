@@ -74,6 +74,7 @@ export default createStore({
             }
         },
         setUsername: (state, payload) => {
+            console.log("setUsername", payload)
             state.username = payload
         },
         setCategory: (state, payload) => {
